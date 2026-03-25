@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — PansaGateway</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body class="app-page">
+
+  <%- include('partials/sidebar', { page: 'dashboard' }) %>
+
+  <div class="app-layout">
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="hamburger" onclick="toggleSidebar()">
+        <i class="ri-menu-3-line"></i>
+      </button>
+      <div class="topbar-title">
+        <span>Dashboard</span>
+      </div>
+      <div class="topbar-right">
+        <div class="status-dot online"></div>
+        <span class="status-label">Online</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h2 class="page-title">Selamat Datang 👋</h2>
+          <p class="page-desc">Pantau transaksi merchant Anda secara real-time</p>
+        </div>
+        <div class="merchant-badge">
+          <i class="ri-store-2-line"></i>
+          <span id="dashMerchantId"><%= merchantId || '–' %></span>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card stat-primary">
+          <div class="stat-icon"><i class="ri-money-cny-circle-line"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">Total Hari Ini</div>
+            <div class="stat-value" id="statTotal">Rp 0</div>
+          </div>
+          <div class="stat-glow"></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="ri-exchange-line"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">Transaksi</div>
+            <div class="stat-value" id="statCount">0</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><i class="ri-time-line"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">Update Terakhir</div>
+            <div class="stat-value stat-sm" id="statTime">–</div>
+          </div>
+        </div>
+        <div class="stat-card stat-live">
+          <div class="stat-icon pulse-icon"><i class="ri-live-line"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">Status Stream</div>
+            <div class="stat-value stat-sm" id="statStream">Menghubungkan...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Transactions -->
+      <div class="section-card">
+        <div class="section-header">
+          <h3 class="section-title"><i class="ri-list-check-3"></i> Transaksi Terbaru</h3>
+          <a href="/mutasi" class="section-link">Lihat Semua <i class="ri-arrow-right-line"></i></a>
+        </div>
+        <div class="tx-list" id="dashTxList">
+          <div class="empty-state">
+            <i class="ri-inbox-line"></i>
+            <p>Memuat transaksi...</p>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    const MERCHANT_ID = "<%= merchantId || '' %>";
+  </script>
+  <script src="/js/main.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
