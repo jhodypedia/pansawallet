@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mutasi — PansaGateway</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body class="app-page">
+
+  <%- include('partials/sidebar', { page: 'mutasi' }) %>
+
+  <div class="app-layout">
+    <header class="topbar">
+      <button class="hamburger" onclick="toggleSidebar()">
+        <i class="ri-menu-3-line"></i>
+      </button>
+      <div class="topbar-title"><span>Mutasi Transaksi</span></div>
+      <div class="topbar-right">
+        <div class="live-indicator" id="liveIndicator">
+          <span class="live-dot"></span>
+          <span>LIVE</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label class="filter-label">Dari</label>
+          <div class="input-wrap">
+            <i class="ri-calendar-line input-icon"></i>
+            <input type="date" id="filterFrom" class="form-input date-input" />
+          </div>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Sampai</label>
+          <div class="input-wrap">
+            <i class="ri-calendar-check-line input-icon"></i>
+            <input type="date" id="filterTo" class="form-input date-input" />
+          </div>
+        </div>
+        <button class="filter-btn" onclick="loadMutasi()">
+          <i class="ri-search-line"></i> Cari
+        </button>
+        <button class="filter-btn secondary" onclick="resetFilter()">
+          <i class="ri-refresh-line"></i>
+        </button>
+      </div>
+
+      <!-- Summary -->
+      <div class="mutasi-summary">
+        <div class="summary-item">
+          <span class="summary-label">Total Masuk</span>
+          <span class="summary-value accent" id="mutasiTotal">Rp 0</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-item">
+          <span class="summary-label">Jumlah Transaksi</span>
+          <span class="summary-value" id="mutasiCount">0</span>
+        </div>
+      </div>
+
+      <!-- Transaction Table -->
+      <div class="section-card">
+        <div class="section-header">
+          <h3 class="section-title"><i class="ri-receipt-line"></i> Riwayat Mutasi</h3>
+          <div id="loadingSpinner" class="spinner hidden"><i class="ri-loader-4-line spin"></i></div>
+        </div>
+
+        <!-- Desktop Table -->
+        <div class="table-wrap desktop-table">
+          <table class="tx-table">
+            <thead>
+              <tr>
+                <th>Waktu</th>
+                <th>Order ID</th>
+                <th>Metode</th>
+                <th>Status</th>
+                <th class="text-right">Jumlah</th>
+              </tr>
+            </thead>
+            <tbody id="mutasiTableBody">
+              <tr><td colspan="5" class="empty-row"><i class="ri-inbox-line"></i> Belum ada data</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Mobile Cards -->
+        <div class="mobile-cards" id="mutasiMobileCards">
+          <div class="empty-state">
+            <i class="ri-inbox-line"></i>
+            <p>Belum ada data</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- New TX Toast -->
+      <div class="new-tx-toast hidden" id="newTxToast">
+        <i class="ri-notification-3-line"></i>
+        <span id="toastText">Transaksi baru masuk!</span>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const MERCHANT_ID = "<%= merchantId || '' %>";
+  </script>
+  <script src="/js/main.js"></script>
+  <script src="/js/mutasi.js"></script>
+</body>
+</html>
