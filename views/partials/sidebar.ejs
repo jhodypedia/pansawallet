@@ -1,0 +1,37 @@
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">
+      <i class="ri-leaf-line"></i>
+    </div>
+    <div class="brand-text">
+      <span class="brand-name">Pansa<span class="brand-accent">Gateway</span></span>
+      <span class="brand-sub">Merchant Portal</span>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-label">Menu</div>
+    <a href="/dashboard" class="nav-item <%= typeof page !== 'undefined' && page === 'dashboard' ? 'active' : '' %>">
+      <span class="nav-icon"><i class="ri-dashboard-3-line"></i></span>
+      <span class="nav-text">Dashboard</span>
+    </a>
+    <a href="/mutasi" class="nav-item <%= typeof page !== 'undefined' && page === 'mutasi' ? 'active' : '' %>">
+      <span class="nav-icon"><i class="ri-exchange-funds-line"></i></span>
+      <span class="nav-text">Mutasi</span>
+      <span class="nav-badge live-badge">LIVE</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="merchant-pill">
+      <i class="ri-store-2-line"></i>
+      <span class="merchant-id-text" id="merchantIdText">–</span>
+    </div>
+    <a href="/logout" class="logout-btn">
+      <i class="ri-logout-box-r-line"></i>
+      <span>Keluar</span>
+    </a>
+  </div>
+</aside>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
