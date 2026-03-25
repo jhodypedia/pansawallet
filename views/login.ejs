@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — PansaGateway</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body class="login-page">
+
+  <div class="login-bg">
+    <div class="login-orb login-orb-1"></div>
+    <div class="login-orb login-orb-2"></div>
+    <div class="login-grid"></div>
+  </div>
+
+  <div class="login-wrapper">
+    <div class="login-card">
+
+      <div class="login-header">
+        <div class="login-logo">
+          <i class="ri-leaf-line"></i>
+        </div>
+        <h1 class="login-title">Pansa<span class="accent">Gateway</span></h1>
+        <p class="login-sub">Merchant Payment Portal</p>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div class="tab-switcher">
+        <button class="tab-btn active" data-tab="email" onclick="switchTab('email')">
+          <i class="ri-mail-line"></i> Email
+        </button>
+        <button class="tab-btn" data-tab="otp" onclick="switchTab('otp')">
+          <i class="ri-smartphone-line"></i> OTP
+        </button>
+      </div>
+
+      <!-- Email Tab -->
+      <div class="tab-panel active" id="tab-email">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <div class="input-wrap">
+            <i class="ri-mail-line input-icon"></i>
+            <input type="email" id="loginEmail" class="form-input" placeholder="merchant@email.com" autocomplete="email" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="input-wrap">
+            <i class="ri-lock-line input-icon"></i>
+            <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" autocomplete="current-password" />
+            <button class="toggle-pass" onclick="togglePass('loginPassword', this)" type="button">
+              <i class="ri-eye-off-line"></i>
+            </button>
+          </div>
+        </div>
+        <button class="submit-btn" id="emailLoginBtn" onclick="doEmailLogin()">
+          <span class="btn-text">Masuk</span>
+          <i class="ri-arrow-right-line btn-icon"></i>
+          <span class="btn-loader hidden"><i class="ri-loader-4-line spin"></i></span>
+        </button>
+      </div>
+
+      <!-- OTP Tab -->
+      <div class="tab-panel" id="tab-otp">
+        <div id="otp-step-1">
+          <div class="form-group">
+            <label class="form-label">Nomor HP</label>
+            <div class="input-wrap phone-wrap">
+              <span class="phone-prefix">+62</span>
+              <input type="tel" id="loginPhone" class="form-input" placeholder="8xx xxxx xxxx" />
+            </div>
+          </div>
+          <button class="submit-btn" id="otpRequestBtn" onclick="doRequestOTP()">
+            <span class="btn-text">Kirim OTP</span>
+            <i class="ri-send-plane-line btn-icon"></i>
+            <span class="btn-loader hidden"><i class="ri-loader-4-line spin"></i></span>
+          </button>
+        </div>
+
+        <div id="otp-step-2" class="hidden">
+          <div class="otp-hint">
+            <i class="ri-shield-check-line"></i>
+            <span>Kode OTP dikirim ke nomor Anda</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Kode OTP</label>
+            <div class="input-wrap">
+              <i class="ri-key-2-line input-icon"></i>
+              <input type="text" id="loginOTP" class="form-input otp-input" placeholder="000000" maxlength="6" inputmode="numeric" />
+            </div>
+          </div>
+          <button class="submit-btn" id="otpVerifyBtn" onclick="doVerifyOTP()">
+            <span class="btn-text">Verifikasi</span>
+            <i class="ri-check-line btn-icon"></i>
+            <span class="btn-loader hidden"><i class="ri-loader-4-line spin"></i></span>
+          </button>
+          <button class="link-btn" onclick="backOTPStep1()">
+            <i class="ri-arrow-left-line"></i> Ganti nomor
+          </button>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div class="login-error hidden" id="loginError">
+        <i class="ri-error-warning-line"></i>
+        <span id="loginErrorText"></span>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/js/login.js"></script>
+</body>
+</html>
